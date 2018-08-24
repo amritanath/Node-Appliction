@@ -17,11 +17,32 @@ io.on('connection', (socket)=>{
 
   console.log('new user connected');
 
-  socket.on('disconnect', ()=>{
-    console.log('Dis-connected from server');
+  // socket.emit('newEmail', {
+  //   from :'amrita@gmail.com',
+  //   text :'hey what is going on',
+  //   createtime : 123
+  // });
+
+  // socket.on('createEmail', (newEmail)=>{
+  //   console.log('createEmail', newEmail);
+  // });
+
+  socket.emit('newMessage', {
+    from :'amrita@gmail.com',
+    text :'see you then',
+    createtime : 123456
   })
 
-})
+  socket.on('createMessage', (message)=>{
+    console.log('createMessage', message);
+  });
+
+
+  socket.on('disconnect', ()=>{
+    console.log('Dis-connected from server');
+  });
+
+});
 // console.log(publicpath);
 server.listen(port ,()=>{
   console.log(`SERVER IS UP ON PORT : ${port}`);
