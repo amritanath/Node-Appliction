@@ -16,6 +16,28 @@ app.use(express.static(publicpath));
 io.on('connection', (socket)=>{
 
   console.log('new user connected');
+
+
+  // socket.emit from Admin text welcome to chat app
+  socket.emit('newMessage', {
+    from : 'Admin',
+    text : 'Weclome to the chat app',
+    createdAt : new Date().getTime()
+  });
+  // socket.broadcast.emit from admin text New user joined
+
+  socket.broadcast.emit('newMessage', {
+    from : 'Admin',
+    text : 'Weclome to the chat app',
+    createdAt : new Date().getTime()
+
+  })
+
+
+
+
+
+
 // ====1
   // socket.emit('newEmail', {
   //   from :'amrita@gmail.com',
@@ -33,6 +55,8 @@ io.on('connection', (socket)=>{
   //   createtime : 123456
   // })
 
+
+
   socket.on('createMessage', (message)=>{
     console.log('createMessage', message);
     io.emit('newMessage',{
@@ -40,6 +64,13 @@ io.on('connection', (socket)=>{
       text: message.text,
       createdAt :new Date().getTime()
     });
+
+
+    // socket.broadcast.emit('newMessage', {
+    //   from: message.from,
+    //   text: message.text,
+    //   createdAt :new Date().getTime()
+    // });
   });
 
 
