@@ -7,11 +7,11 @@ socket.on('connect', function() {
   //   from :'shwetha@gmail.com',
   //   text :'hey , Amrita here'
   // });
-
-  socket.emit('createMessage', {
-    from :'shwetha@gmail.com',
-    text :'hey , im here'
-  });
+// ===2
+  // socket.emit('createMessage', {
+  //   from :'shwetha@gmail.com',
+  //   text :'hey , im here'
+  // });
 
 
 });

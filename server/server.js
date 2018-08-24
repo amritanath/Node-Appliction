@@ -16,7 +16,7 @@ app.use(express.static(publicpath));
 io.on('connection', (socket)=>{
 
   console.log('new user connected');
-
+// ====1
   // socket.emit('newEmail', {
   //   from :'amrita@gmail.com',
   //   text :'hey what is going on',
@@ -26,15 +26,20 @@ io.on('connection', (socket)=>{
   // socket.on('createEmail', (newEmail)=>{
   //   console.log('createEmail', newEmail);
   // });
-
-  socket.emit('newMessage', {
-    from :'amrita@gmail.com',
-    text :'see you then',
-    createtime : 123456
-  })
+//====2
+  // socket.emit('newMessage', {
+  //   from :'amrita@gmail.com',
+  //   text :'see you then',
+  //   createtime : 123456
+  // })
 
   socket.on('createMessage', (message)=>{
     console.log('createMessage', message);
+    io.emit('newMessage',{
+      from: message.from,
+      text: message.text,
+      createdAt :new Date().getTime()
+    });
   });
 
 
